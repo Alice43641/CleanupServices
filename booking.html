@@ -7,12 +7,12 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #61540cbe;
+      background: #06363d;
       margin: 0;
       padding: 20px;
     }
     .back-home {
-      color: white;
+      color: #e0ede9;
       text-decoration: none;
       display: block;
       margin-bottom: 20px;
@@ -23,26 +23,27 @@
       margin: auto;
       padding: 20px;
       border-radius: 20px;
-      box-shadow: 0px 2px 20px white;
+      box-shadow: 0px 2px 20px ;
+      background: rgba(0,0,0,0.2);
     }
     h1 {
       text-align: center;
-      color: #333;
+      color: #0d6f73;
     }
     .form-section h3 {
-      color: #61540c;
+      color: #0d6f73;
       text-align: center;
     }
     .form-section {
       margin-top: 20px;
       padding: 15px;
-      border: 1px solid #ddd;
+      border: 1px solid #e9ecef;
       border-radius: 8px;
       display: none;
     }
     label {
       display: block;
-      color: white;
+      color: #e9ecef;
       margin: 8px 0 4px;
       font-weight: bold;
     }
@@ -54,56 +55,38 @@
       border-radius: 5px;
     }
     .cost-box {
-      background: #e9ecef;
-      border: 1px solid #ccc;
+      background: #085558;
+      border: 1px solid #e9ecef;
       padding: 10px;
       border-radius: 5px;
       margin-bottom: 12px;
       display: none;
+      color: #fff;
     }
     button {
       width: 100%;
       padding: 10px;
-      background: #61540c62;
+      background: #0d6f73;
       border: none;
-      color: white;
+      color: #e9ecef;
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
     }
     button:hover {
-      background: #61540c21;
+      background: #84babf;
     }
 
-    /* Responsive adjustments for small screens */
+    /* Responsive adjustments */
     @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      .container {
-        max-width: 300px;
-        padding: 10px;
-      }
-      h1 {
-        font-size: 20px;
-      }
-      .slot h3 {
-        font-size: 16px;
-      }
-      label {
-        font-size: 14px;
-      }
-      input, select, button {
-        padding: 6px;
-        font-size: 14px;
-      }
-      .cost, .error, .confirmation {
-        font-size: 13px;
-        padding: 8px;
-      }
-      .back-home {
-        font-size: 14px;
-      }
+      body { padding: 10px; }
+      .container { max-width: 300px; padding: 10px; }
+      h1 { font-size: 20px; }
+      .slot h3 { font-size: 16px; }
+      label { font-size: 14px; }
+      input, select, button { padding: 6px; font-size: 14px; }
+      .cost, .error, .confirmation { font-size: 13px; padding: 8px; }
+      .back-home { font-size: 14px; }
     }
   </style>
 </head>
@@ -139,7 +122,27 @@
         <input type="tel" id="phoneRoom" required>
 
         <label for="locationRoom">Location:</label>
-        <input type="text" id="locationRoom" required>
+        <select id="locationRoom" required>
+          <option value="">Select Area</option>
+          <option>Woodlands</option>
+          <option>Kabulonga</option>
+          <option>Chilenje</option>
+          <option>Matero</option>
+          <option>Rhodespark</option>
+          <option>Northmead</option>
+          <option>Garden</option>
+          <option>Kanyama</option>
+          <option>Makeni</option>
+          <option>Kamwala</option>
+          <option>Chalala</option>
+          <option>PHI</option>
+          <option>Avondale</option>
+          <option>Ibex Hill</option>
+          <option>Roma</option>
+          <option>Mass Media</option>
+          <option>Emmasdale</option>
+          <option>Other only in Lusaka</option>
+        </select>
 
         <label>Number of Rooms (apart from kitchen, toilet and bathroom):</label>
         <input type="number" id="rooms" min="0" oninput="calcRoomCost()" required>
@@ -159,7 +162,7 @@
       </form>
     </div>
 
-    <!-- Celebration Venue Booking Form -->
+    <!-- Venue Booking Form -->
     <div id="venueForm" class="form-section">
       <h3>Venue Booking</h3>
       <form onsubmit="submitVenueBooking(event)">
@@ -178,7 +181,27 @@
         <input type="tel" id="phoneVenue" required>
 
         <label for="locationVenue">Location:</label>
-        <input type="text" id="locationVenue" required>
+        <select id="locationVenue" required>
+          <option value="">Select Area</option>
+          <option>Woodlands</option>
+          <option>Kabulonga</option>
+          <option>Chilenje</option>
+          <option>Matero</option>
+          <option>Rhodespark</option>
+          <option>Northmead</option>
+          <option>Garden</option>
+          <option>Kanyama</option>
+          <option>Makeni</option>
+          <option>Kamwala</option>
+          <option>Chalala</option>
+          <option>PHI</option>
+          <option>Avondale</option>
+          <option>Ibex Hill</option>
+          <option>Roma</option>
+          <option>Mass Media</option>
+          <option>Emmasdale</option>
+          <option>Other only in Lusaka</option>
+        </select>
 
         <label for="toiletsVenue">Are there toilets to clean?</label>
         <select id="toiletsVenue" onchange="toggleToiletInput(); calcVenueCost()">
@@ -214,47 +237,6 @@
       cooking: 400
     };
 
-    // Lusaka province approx. bounding box
-    const lusakaBounds = {
-      latMin: -15.7,
-      latMax: -14.9,
-      lngMin: 27.9,
-      lngMax: 29.5
-    };
-
-    function isInLusaka(lat, lng) {
-      return (
-        lat >= lusakaBounds.latMin &&
-        lat <= lusakaBounds.latMax &&
-        lng >= lusakaBounds.lngMin &&
-        lng <= lusakaBounds.lngMax
-      );
-    }
-
-    function getLocation(callback) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            if (isInLusaka(lat, lng)) {
-              callback(true);
-            } else {
-              alert("Sorry, bookings are only allowed within Lusaka Province.");
-              callback(false);
-            }
-          },
-          () => {
-            alert("Please enable location services to proceed with booking.");
-            callback(false);
-          }
-        );
-      } else {
-        alert("Geolocation is not supported by your browser.");
-        callback(false);
-      }
-    }
-
     function isBookingValid(selectedDate, selectedTime) {
       const [hours, minutes] = selectedTime.split(':');
       const bookingDateTime = new Date(selectedDate);
@@ -262,7 +244,7 @@
 
       const now = new Date();
       const diffInHours = (bookingDateTime - now) / (1000 * 60 * 60);
-      return diffInHours >= 5;
+      return diffInHours >= 10; // now requires 10hrs ahead
     }
 
     function toggleForm() {
@@ -285,7 +267,7 @@
 
       const box = document.getElementById("roomCost");
       box.style.display = "block";
-      box.innerHTML = `Estimated Cost: <b>ZMW ${total}</b>`;
+      box.innerHTML = `Total Cost: <b>ZMW ${total}</b>`;
       return total;
     }
 
@@ -309,24 +291,20 @@
       const time = document.getElementById("timeRoom").value;
 
       if(!isBookingValid(date, time)){
-        alert("Booking cannot be made less than 5 hours before the selected date and time.");
+        alert("Booking cannot be made less than 10 hours before the selected date and time.");
         return;
       }
 
-      getLocation((allowed) => {
-        if (!allowed) return;
+      const phone = document.getElementById("phoneRoom").value;
+      const location = document.getElementById("locationRoom").value;
+      const rooms = document.getElementById("rooms").value;
+      const kitchens = document.getElementById("kitchens").value;
+      const toilets = document.getElementById("toilets").value;
+      const bathrooms = document.getElementById("bathrooms").value;
+      const total = calcRoomCost();
 
-        const phone = document.getElementById("phoneRoom").value;
-        const location = document.getElementById("locationRoom").value;
-        const rooms = document.getElementById("rooms").value;
-        const kitchens = document.getElementById("kitchens").value;
-        const toilets = document.getElementById("toilets").value;
-        const bathrooms = document.getElementById("bathrooms").value;
-        const total = calcRoomCost();
-
-        const message = `Room Booking\nDate: ${date}\nTime: ${time}\nPhone: ${phone}\nLocation: ${location}\nRooms: ${rooms}\nKitchens: ${kitchens}\nToilets: ${toilets}\nBathrooms: ${bathrooms}\nEstimated Cost: ZMW ${total}`;
-        window.open(`https://wa.me/260776482371?text=${encodeURIComponent(message)}`, "_blank");
-      });
+      const message = `Room Booking\nDate: ${date}\nTime: ${time}\nPhone: ${phone}\nLocation: ${location}\nRooms: ${rooms}\nKitchens: ${kitchens}\nToilets: ${toilets}\nBathrooms: ${bathrooms}\nEstimated Cost: ZMW ${total}`;
+      window.open(`https://wa.me/260776482371?text=${encodeURIComponent(message)}`, "_blank");
     }
 
     function submitVenueBooking(event){
@@ -335,25 +313,20 @@
       const time = document.getElementById("timeVenue").value;
 
       if(!isBookingValid(date, time)){
-        alert("Booking cannot be made less than 5 hours before the selected date and time.");
+        alert("Booking cannot be made less than 10 hours before the selected date and time.");
         return;
       }
 
-      getLocation((allowed) => {
-        if (!allowed) return;
+      const phone = document.getElementById("phoneVenue").value;
+      const location = document.getElementById("locationVenue").value;
+      const toilets = document.getElementById("toiletsVenue").value;
+      const toiletCount = (toilets === "yes") ? document.getElementById("toiletCount").value : "0";
+      const cooking = document.getElementById("cookingVenue").value;
+      const total = calcVenueCost();
 
-        const phone = document.getElementById("phoneVenue").value;
-        const location = document.getElementById("locationVenue").value;
-        const toilets = document.getElementById("toiletsVenue").value;
-        const toiletCount = (toilets === "yes") ? document.getElementById("toiletCount").value : "0";
-        const cooking = document.getElementById("cookingVenue").value;
-        const total = calcVenueCost();
-
-        const message = `Venue Booking\nDate: ${date}\nTime: ${time}\nPhone: ${phone}\nLocation: ${location}\nToilets: ${toilets} ${toiletCount !== "0" ? "(" + toiletCount + ")" : ""}\nCooking Area: ${cooking}\nEstimated Cost: ZMW ${total}`;
-        window.open(`https://wa.me/260776482371?text=${encodeURIComponent(message)}`, "_blank");
-      });
+      const message = `Venue Booking\nDate: ${date}\nTime: ${time}\nPhone: ${phone}\nLocation: ${location}\nToilets: ${toilets} ${toiletCount !== "0" ? "(" + toiletCount + ")" : ""}\nCooking Area: ${cooking}\nEstimated Cost: ZMW ${total}`;
+      window.open(`https://wa.me/260776482371?text=${encodeURIComponent(message)}`, "_blank");
     }
   </script>
-
 </body>
 </html>
