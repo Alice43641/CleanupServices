@@ -7,45 +7,49 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #61540c9a;
+      background: #06363D;
       margin: 0;
       padding: 0;
     }
     header {
-      background: #61540c;
-      color: white;
       padding: 1px;
       text-align: center;
+    }
+    header h2 {
+      font-size: 1.6em;
+      color: #E0EDE9;
+    }
+    .home-image{
+      background-size: cover;
     }
     .team {
       text-align: center;
       padding: 60px 20px;
-      color: white;
-      background-image: url('team.jpg');
+      color: #E0EDE9;
+      background: url("team.jpg") no-repeat center center;
       background-size: cover;
       background-position: center;
-      border-radius: 10px;
+      border-radius: 1px;
       margin-bottom: 30px;
     }
-
     .team h1 {
       font-size: 2.5em;
       margin-bottom: 15px;
-      text-shadow: 2px 2px 6px rgb(0, 0, 0);
-      color: rgb(5, 5, 5);
+      text-shadow: 8px 8px 8px rgb(0, 0, 0);
+      color: #E0EDE9;
     }
 
     .team p {
       font-size: 1.2em;
-      text-shadow: 1px 1px 4px rgb(0, 0, 0);
-      color: rgba(0, 0, 0, 0.685);
+      text-shadow: 5px 5px 8px rgb(0, 0, 0);
+      color: #E0EDE9;
       
     }
 
     .slots {
       margin-top: 20px;
-      font-size: 1.2em;
-      background: rgba(0,0,0,0.4);
+      font-size: 0.5em;
+      background: #085558;
       display: inline-block;
       padding: 10px 20px;
       border-radius: 8px;
@@ -71,32 +75,32 @@
       color: #61540c;
     }
     .notice {
-      color: black;
+      color: #84BABF;
       margin-top: 3em;
     }
     a {
       display: inline-block;
       padding: 12px 24px;
-      background: #61540c;
-      color: white;
+      background: #0D6F73;
+      color: #E0EDE9;
       text-decoration: none;
       border-radius: 5px;
       font-size: 1.2em;
       transition: background 0.3s;
     }
     a:hover {
-      background: #61540c96;
+      background: #84BABF;
     }
     .pricing {
       max-width: 700px;
       margin: 50px auto;
-      background: white;
+      background: #0D6F73;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .pricing h2 {
-      color: #333;
+    h2 {
+      color: #06363D;
       margin-bottom: 20px;
     }
     table {
@@ -106,13 +110,13 @@
     .rules {
       max-width: 700px;
       margin: 50px auto;
-      background: white;
+      background: #84BABF;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .rules p {
-      color: black;
+      color: #0D6F73;
     }
     th, td {
       padding: 12px;
@@ -120,11 +124,14 @@
       text-align: center;
     }
     th {
-      background: #61540c;
-      color: white;
+      background: #06363D;
+      color: #E0EDE9;
+    }
+    td {
+      color: #06363D;
     }
     tr:nth-child(even) {
-      background: #f9f9f9;
+      background: #84BABF;
     }
     .btn {
       text-align: center;
@@ -134,8 +141,7 @@
       margin-top: 50px;
       padding: 15px;
       text-align: center;
-      background: #f1f1f1;
-      color: #61540c;
+      color: #84BABF;
     }
 
 /* Global adjustments for small screens */
@@ -216,12 +222,12 @@
     <h1>Welcome to C&A CleanupCO</h1>
     <p>We provide professional home, office and venue cleaning services across Lusaka Province.<br>
       Choose your time slot and let our cleanup team handle the rest.</p>
-  </div>
-  <!-- Available Time Slots -->
+      <!-- Available Time Slots -->
     <div class="slots">
       <h3>Available Time Slots</h3>
       <p>05:00 &nbsp;&nbsp; | &nbsp;&nbsp; 11:00 &nbsp;&nbsp; | &nbsp;&nbsp; 16:00</p>
     </div>
+  </div>
   <div>
     <p class="notice">PLEASE READ THE TERMS & CONDITIONS BELOW BEFORE BOOKING!</p>
   </div>
@@ -260,10 +266,10 @@
   </div>
 
   <div class="rules">
-  <h2>TERMS AND CONDITIONS</h2>
+  <h2>Terms&Conditions</h2>
 
   <p><b>1. Booking Deadline</b><br>
-  All bookings must be made at least <b>5 hours</b> in advance.</p>
+  All bookings must be made at least <b>10 hours</b> in advance.</p>
 
   <p><b>2. Payment Terms</b><br>
   A deposit of <b>50%</b> is required upon booking confirmation. 
