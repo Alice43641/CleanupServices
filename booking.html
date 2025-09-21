@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cleanup Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #61540cbe;
+      margin: 0;
+      padding: 20px;
+    }
+    .back-home {
+        color: white;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0px 2px 20px white;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .form-section h3 {
+        color: #61540c;
+        text-align: center;
+    }
+    .form-section {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      display: none;
+    }
+    label {
+      display: block;
+      color: white;
+      margin: 8px 0 4px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .cost-box {
+      background: #e9ecef;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 12px;
+      display: none;
+      color: #333;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #61540c4d;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #61540c1a;
+    }
+
+    /* Responsive adjustments for small screens */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        max-width: 300px;
+        padding: 10px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .form-section h3 {
+        font-size: 16px;
+      }
+      label {
+        font-size: 14px;
+      }
+      input, select, button {
+        padding: 6px;
+        font-size: 14px;
+      }
+      .cost-box {
+        font-size: 13px;
+        padding: 8px;
+      }
+      .back-home {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-home">Back to Home</a>
+  <div class="container">
+    <h1>Book a Cleanup Team</h1>
+
+    <!-- Booking Type Selection -->
+    <label for="bookingType">Select Booking Type:</label>
+    <select id="bookingType" onchange="toggleForm()">
+      <option value="">Choose an Option</option>
+      <option value="room">House/Office Booking</option>
+      <option value="venue">Venue Booking</option>
+    </select>
+
+    <!-- Room Booking Form -->
+    <div id="roomForm" class="form-section">
+      <h3>House/Office Booking</h3>
+      <form onsubmit="submitRoomBooking(event)">
+        <label for="dateRoom">Select Date:</label>
+        <input type="date" id="dateRoom" required>
+
+        <label for="timeRoom">Select Time:</label>
+        <select id="timeRoom" required>
+          <option value="">Time Slot</option>
+          <option value="05:00">05:00</option>
+          <option value="11:00">11:00</option>
+          <option value="16:00">16:00</option>
+        </select>
+
+        <label for="phoneRoom">Phone Number:</label>
+        <input type="tel" id="phoneRoom" required>
+
+        <label for="locationRoom">Location:</label>
+        <input type="text" id="locationRoom" required>
+
+        <label>Number of Rooms:</label>
+        <input type="number" id="rooms" min="0" oninput="calcRoomCost()" required>
+
+        <label>Number of Kitchens:</label>
+        <input type="number" id="kitchens" min="0" oninput="calcRoomCost()" required>
+
+        <label>Number of Toilets:</label>
+        <input type="number" id="toilets" min="0" oninput="calcRoomCost()" required>
+
+        <label>Number of Bathrooms:</label>
+        <input type="number" id="bathrooms" min="0" oninput="calcRoomCost()" required>
+
+        <div id="roomCost" class="cost-box"></div>
+
+        <button type="submit">Book Room</button>
+      </form>
+    </div>
+
+    <!-- Celebration Venue Booking Form -->
+    <div id="venueForm" class="form-section">
+      <h3>Venue Booking</h3>
+      <form onsubmit="submitVenueBooking(event)">
+        <label for="dateVenue">Select Date:</label>
+        <input type="date" id="dateVenue" required>
+
+        <label for="timeVenue">Select Time:</label>
+        <select id="timeVenue" required>
+          <option value="">Time Slot</option>
+          <option value="05:00">05:00</option>
+          <option value="11:00">11:00</option>
+          <option value="16:00">16:00</option>
+        </select>
+
+        <label for="phoneVenue">Phone Number:</label>
+        <input type="tel" id="phoneVenue" required>
+
+        <label for="locationVenue">Location:</label>
+        <input type="text" id="locationVenue" required>
+
+        <label for="toiletsVenue">Are there toilets to clean?</label>
+        <select id="toiletsVenue" onchange="toggleToiletInput(); calcVenueCost()">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+
+        <div id="toiletCountDiv" style="display:none;">
+          <label for="toiletCount">How many Toilets?</label>
+          <input type="number" id="toiletCount" min="1" oninput="calcVenueCost()">
+        </div>
+
+        <label for="cookingVenue">Is there a cooking area to clean?</label>
+        <select id="cookingVenue" onchange="calcVenueCost()">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+
+        <div id="venueCost" class="cost-box"></div>
+
+        <button type="submit">Book Venue</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const prices = {
+      room: 300,
+      kitchen: 400,
+      toilet: 500,
+      bathroom: 500,
+      venueBase: 300,
+      cooking: 400
+    };
+
+    function toggleForm() {
+      const type = document.getElementById("bookingType").value;
+      document.getElementById("roomForm").style.display = (type === "room") ? "block" : "none";
+      document.getElementById("venueForm").style.display = (type === "venue") ? "block" : "none";
+    }
+
+    function toggleToiletInput() {
+      const hasToilets = document.getElementById("toiletsVenue").value;
+      document.getElementById("toiletCountDiv").style.display = (hasToilets === "yes") ? "block" : "none";
+    }
+
+    function calcRoomCost() {
+      const rooms = parseInt(document.getElementById("rooms").value) || 0;
+      const kitchens = parseInt(document.getElementById("kitchens").value) || 0;
+      const toilets = parseInt(document.getElementById("toilets").value) || 0;
+      const bathrooms = parseInt(document.getElementById("bathrooms").value) || 0;
+      const total = (rooms * prices.room) + (kitchens * prices.kitchen) + (toilets * prices.toilet) + (bathrooms * prices.bathroom);
+
+      const box = document.getElementById("roomCost");
+      box.style.display = "block";
+      box.innerHTML = `Estimated Cost: ZMW ${total}`;
+      return total;
+    }
+
+    function calcVenueCost() {
+      const hasToilets = document.getElementById("toiletsVenue").value;
+      const toiletCount = (hasToilets === "yes") ? parseInt(document.getElementById("toiletCount").value) || 0 : 0;
+      const cooking = document.getElementById("cookingVenue").value;
+
+      let total = prices.venueBase + (toiletCount * prices.toilet);
+      if (cooking === "yes") total += prices.cooking;
+
+      const box = document.getElementById("venueCost");
+      box.style.display = "block";
+      box.innerHTML = `Estimated Cost: ZMW ${total} (Total cost may vary based on space size)`;
+      return total;
+    }
+
+    function isBookingValid(selectedDate, selectedTime) {
+      const [hours, minutes] = selectedTime.split(':');
+      const bookingDateTime = new Date(selectedDate);
+      bookingDateTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+
+      const now = new Date();
+      const diffInHours = (bookingDateTime - now) / (1000 * 60 * 60);
+      return diffInHours >= 5;
+    }
+
+    function submitRoomBooking(event){
+      event.preventDefault();
+      const date = document.getElementById("dateRoom").value;
+      const time = document.getElementById("timeRoom").value;
+      if(!isBookingValid(date, time)){
+        alert("Booking cannot be made less than 5 hours before the selected date and time.");
+        return;
+      }
+      const phone = document.getElementById("phoneRoom").value;
+      const location = document.getElementById("locationRoom").value;
+      const rooms = document.getElementById("rooms").value;
+      const kitchens = document.getElementById("kitchens").value;
+      const toilets = document.getElementById("toilets").value;
+      const bathrooms = document.getElementById("bathrooms").value;
+      const total = calcRoomCost();
+
+      const message = `Room Booking\nDate: ${date}\nTime: ${time}\nPhone: ${phone}\nLocation: ${location}\nRooms: ${rooms}, Kitchens: ${kitchens}, Toilets: ${toilets}, Bathrooms: ${bathrooms}\nEstimated Cost: ZMW ${total}`;
+      window.open(`https://wa.me/260767153829?text=${encodeURIComponent(message)}`, "_blank");
+    }
+
+    function submitVenueBooking(event){
+      event.preventDefault();
+      const date = document.getElementById("dateVenue").value;
+      const time = document.getElementById("timeVenue").value;
+      if(!isBookingValid(date, time)){
+        alert("Booking cannot be made less than 5 hours before the selected date and time.");
+        return;
+      }
+      const phone = document.getElementById("phoneVenue").value;
+      const location = document.getElementById("locationVenue").value;
+      const toilets = document.getElementById("toiletsVenue").value;
+      const toiletCount = (toilets === "yes") ? document.getElementById("toiletCount").value : "0";
+      const cooking = document.getElementById("cookingVenue").value;
+      const total = calcVenueCost();
+
+      const message = `Venue Booking\nDate: ${date}\nTime: ${time}\nPhone: ${phone}\nLocation: ${location}\nToilets: ${toilets} ${toiletCount !== "0" ? "(" + toiletCount + ")" : ""}\nCooking Area: ${cooking}\nEstimated Cost: ZMW ${total}`;
+      window.open(`https://wa.me/260767153829?text=${encodeURIComponent(message)}`, "_blank");
+    }
+  </script>
+</body>
+</html>
