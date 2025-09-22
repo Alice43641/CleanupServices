@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CleaningService Booking</title>
+  <title>Service Booking</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,7 +23,7 @@
       margin: auto;
       padding: 20px;
       border-radius: 20px;
-      box-shadow: 0px 2px 20px ;
+      box-shadow: 0px 2px 20px;
       background: rgba(0,0,0,0.2);
     }
     h1 {
@@ -77,17 +77,12 @@
     button:hover {
       background: #84babf;
     }
-
-    /* Responsive adjustments */
     @media (max-width: 600px) {
       body { padding: 10px; }
       .container { max-width: 300px; padding: 10px; }
       h1 { font-size: 20px; }
-      .slot h3 { font-size: 16px; }
       label { font-size: 14px; }
       input, select, button { padding: 6px; font-size: 14px; }
-      .cost, .error, .confirmation { font-size: 13px; padding: 8px; }
-      .back-home { font-size: 14px; }
     }
   </style>
 </head>
@@ -107,7 +102,7 @@
     <div id="roomForm" class="form-section">
       <h3>House/Office Booking</h3>
       <form onsubmit="submitRoomBooking(event)">
-
+        <label for="timeRoom">Select Time:</label>
         <select id="timeRoom" required>
           <option value="">Time Slot</option>
           <option value="05:00">05:00</option>
@@ -115,61 +110,36 @@
           <option value="16:00">16:00</option>
         </select>
 
+        <label for="locationRoom">Location:</label>
         <select id="locationRoom" required>
-  <option value="">Select Location</option>
-  <option value="Avondale">Avondale</option>
-  <option value="Bauleni">Bauleni</option>
-  <option value="Chalala">Chalala</option>
-  <option value="Chamba Valley">Chamba Valley</option>
-  <option value="Chelstone">Chelstone</option>
-  <option value="Chibolya">Chibolya</option>
-  <option value="Chilenje">Chilenje</option>
-  <option value="Chilulu">Chilulu</option>
-  <option value="Chunga">Chunga</option>
-  <option value="Emmasdale">Emmasdale</option>
-  <option value="Foxdale">Foxdale</option>
-  <option value="Garden">Garden</option>
-  <option value="George">George</option>
-  <option value="Ibex Hill">Ibex Hill</option>
-  <option value="Jack Compound">Jack Compound</option>
-  <option value="Kabwata">Kabwata</option>
-  <option value="Kabulonga">Kabulonga</option>
-  <option value="Kalundu">Kalundu</option>
-  <option value="Kamwala">Kamwala</option>
-  <option value="Kamwala South">Kamwala South</option>
-  <option value="Kanyama">Kanyama</option>
-  <option value="Kaunda Square Stage 1">Kaunda Square Stage 1</option>
-  <option value="Kaunda Square Stage 2">Kaunda Square Stage 2</option>
-  <option value="Kawama">Kawama</option>
-  <option value="Lilayi">Lilayi</option>
-  <option value="Longacres">Longacres</option>
-  <option value="Makeni">Makeni</option>
-  <option value="Matero">Matero</option>
-  <option value="Mtendere">Mtendere</option>
-  <option value="M’tendere East">M’tendere East</option>
-  <option value="M’tendere West">M’tendere West</option>
-  <option value="Munali">Munali</option>
-  <option value="Munkulungwe">Munkulungwe</option>
-  <option value="Northmead">Northmead</option>
-  <option value="Olympia">Olympia</option>
-  <option value="PHI">PHI</option>
-  <option value="Rhodes Park">Rhodes Park</option>
-  <option value="Roma">Roma</option>
-  <option value="Salama Park">Salama Park</option>
-  <option value="Woodlands">Woodlands</option>
-  <option value="Other">Other</option>
-</select>
+          <option value="">Select Location</option>
+          <option value="Avondale">Avondale</option>
+          <option value="Bauleni">Bauleni</option>
+          <option value="Chalala">Chalala</option>
+          <option value="Chelstone">Chelstone</option>
+          <option value="Chilenje">Chilenje</option>
+          <option value="Ibex Hill">Ibex Hill</option>
+          <option value="Kabwata">Kabwata</option>
+          <option value="Kabulonga">Kabulonga</option>
+          <option value="Kamwala">Kamwala</option>
+          <option value="Kanyama">Kanyama</option>
+          <option value="Matero">Matero</option>
+          <option value="Northmead">Northmead</option>
+          <option value="Roma">Roma</option>
+          <option value="Woodlands">Woodlands</option>
+          <option value="Other">Other</option>
+        </select>
 
         <label for="dateRoom">Select Day:</label>
         <input type="date" id="dateRoom" required>
 
         <label for="nameRoom">Name:</label>
-        <input type="text" id="customerName" required>
+        <input type="text" id="nameRoom" required>
 
         <label for="phoneRoom">Phone Number:</label>
         <input type="tel" id="phoneRoom" required>
 
-        <label>Number of Rooms (apart from kitchen, toilet and bathroom):</label>
+        <label>Number of Rooms:</label>
         <input type="number" id="rooms" min="0" oninput="calcRoomCost()" required>
 
         <label>Number of Kitchens:</label>
@@ -182,7 +152,6 @@
         <input type="number" id="bathrooms" min="0" oninput="calcRoomCost()" required>
 
         <div id="roomCost" class="cost-box"></div>
-
         <button type="submit">Book Team</button>
       </form>
     </div>
@@ -191,7 +160,7 @@
     <div id="venueForm" class="form-section">
       <h3>Venue Booking</h3>
       <form onsubmit="submitVenueBooking(event)">
-
+        <label for="timeVenue">Select Time:</label>
         <select id="timeVenue" required>
           <option value="">Time Slot</option>
           <option value="05:00">05:00</option>
@@ -199,63 +168,38 @@
           <option value="16:00">16:00</option>
         </select>
 
+        <label for="locationVenue">Location:</label>
         <select id="locationVenue" required>
-  <option value="">Select Location</option>
-  <option value="Avondale">Avondale</option>
-  <option value="Bauleni">Bauleni</option>
-  <option value="Chalala">Chalala</option>
-  <option value="Chamba Valley">Chamba Valley</option>
-  <option value="Chelstone">Chelstone</option>
-  <option value="Chibolya">Chibolya</option>
-  <option value="Chilenje">Chilenje</option>
-  <option value="Chilulu">Chilulu</option>
-  <option value="Chunga">Chunga</option>
-  <option value="Emmasdale">Emmasdale</option>
-  <option value="Foxdale">Foxdale</option>
-  <option value="Garden">Garden</option>
-  <option value="George">George</option>
-  <option value="Ibex Hill">Ibex Hill</option>
-  <option value="Jack Compound">Jack Compound</option>
-  <option value="Kabwata">Kabwata</option>
-  <option value="Kabulonga">Kabulonga</option>
-  <option value="Kalundu">Kalundu</option>
-  <option value="Kamwala">Kamwala</option>
-  <option value="Kamwala South">Kamwala South</option>
-  <option value="Kanyama">Kanyama</option>
-  <option value="Kaunda Square Stage 1">Kaunda Square Stage 1</option>
-  <option value="Kaunda Square Stage 2">Kaunda Square Stage 2</option>
-  <option value="Kawama">Kawama</option>
-  <option value="Lilayi">Lilayi</option>
-  <option value="Longacres">Longacres</option>
-  <option value="Makeni">Makeni</option>
-  <option value="Matero">Matero</option>
-  <option value="Mtendere">Mtendere</option>
-  <option value="M’tendere East">M’tendere East</option>
-  <option value="M’tendere West">M’tendere West</option>
-  <option value="Munali">Munali</option>
-  <option value="Munkulungwe">Munkulungwe</option>
-  <option value="Northmead">Northmead</option>
-  <option value="Olympia">Olympia</option>
-  <option value="PHI">PHI</option>
-  <option value="Rhodes Park">Rhodes Park</option>
-  <option value="Roma">Roma</option>
-  <option value="Salama Park">Salama Park</option>
-  <option value="Woodlands">Woodlands</option>
-  <option value="Other">Other</option>
-</select>
+          <option value="">Select Location</option>
+          <option value="Avondale">Avondale</option>
+          <option value="Bauleni">Bauleni</option>
+          <option value="Chalala">Chalala</option>
+          <option value="Chelstone">Chelstone</option>
+          <option value="Chilenje">Chilenje</option>
+          <option value="Ibex Hill">Ibex Hill</option>
+          <option value="Kabwata">Kabwata</option>
+          <option value="Kabulonga">Kabulonga</option>
+          <option value="Kamwala">Kamwala</option>
+          <option value="Kanyama">Kanyama</option>
+          <option value="Matero">Matero</option>
+          <option value="Northmead">Northmead</option>
+          <option value="Roma">Roma</option>
+          <option value="Woodlands">Woodlands</option>
+          <option value="Other">Other</option>
+        </select>
 
-        <label for="dateRoom">Select Day:</label>
+        <label for="dateVenue">Select Day:</label>
         <input type="date" id="dateVenue" required>
 
         <label for="nameVenue">Name:</label>
-        <input type="text" id="customerName" required>
+        <input type="text" id="nameVenue" required>
 
         <label for="phoneVenue">Phone Number:</label>
         <input type="tel" id="phoneVenue" required>
 
         <label for="toiletsVenue">Are there toilets to clean?</label>
         <select id="toiletsVenue" onchange="toggleToiletInput(); calcVenueCost()">
-          <option value=""></option>
+          <option value="">Select</option>
           <option value="no">No</option>
           <option value="yes">Yes</option>
         </select>
@@ -265,38 +209,28 @@
           <input type="number" id="toiletCount" min="1" oninput="calcVenueCost()">
         </div>
 
-        <label for="cookingVenue">Is there a cooking area to clean?</label>
+        <label for="cookingVenue">Is there a cooking area?</label>
         <select id="cookingVenue" onchange="calcVenueCost()">
-          <option value=""></option>
+          <option value="">Select</option>
           <option value="no">No</option>
           <option value="yes">Yes</option>
         </select>
 
         <div id="venueCost" class="cost-box"></div>
-
         <button type="submit">Book Team</button>
       </form>
     </div>
   </div>
 
   <script>
-    const prices = {
-      room: 300,
-      kitchen: 400,
-      toilet: 500,
-      bathroom: 500,
-      venueBase: 300,
-      cooking: 400
-    };
+    const prices = { room: 300, kitchen: 400, toilet: 500, bathroom: 500, venueBase: 300, cooking: 400 };
 
-    function isBookingValid(selectedDate, selectedTime) {
-      const [hours, minutes] = selectedTime.split(':');
-      const bookingDateTime = new Date(selectedDate);
+    function isBookingValid(date, time) {
+      const [hours, minutes] = time.split(":");
+      const bookingDateTime = new Date(date);
       bookingDateTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
-
       const now = new Date();
-      const diffInHours = (bookingDateTime - now) / (1000 * 60 * 60);
-      return diffInHours >= 10;
+      return (bookingDateTime - now) / (1000 * 60 * 60) >= 10;
     }
 
     function toggleForm() {
@@ -311,106 +245,48 @@
     }
 
     function calcRoomCost() {
-      const rooms = parseInt(document.getElementById("rooms").value) || 0;
-      const kitchens = parseInt(document.getElementById("kitchens").value) || 0;
-      const toilets = parseInt(document.getElementById("toilets").value) || 0;
-      const bathrooms = parseInt(document.getElementById("bathrooms").value) || 0;
+      const rooms = +document.getElementById("rooms").value || 0;
+      const kitchens = +document.getElementById("kitchens").value || 0;
+      const toilets = +document.getElementById("toilets").value || 0;
+      const bathrooms = +document.getElementById("bathrooms").value || 0;
       const total = (rooms * prices.room) + (kitchens * prices.kitchen) + (toilets * prices.toilet) + (bathrooms * prices.bathroom);
-
-      const box = document.getElementById("roomCost");
-      box.style.display = "block";
-      box.innerHTML = `Total Cost: <b>ZMW ${total}</b>`;
+      document.getElementById("roomCost").style.display = "block";
+      document.getElementById("roomCost").innerHTML = `Total Cost: <b>ZMW ${total}</b>`;
       return total;
     }
 
     function calcVenueCost() {
       const hasToilets = document.getElementById("toiletsVenue").value;
-      const toiletCount = (hasToilets === "yes") ? parseInt(document.getElementById("toiletCount").value) || 0 : 0;
+      const toiletCount = (hasToilets === "yes") ? (+document.getElementById("toiletCount").value || 0) : 0;
       const cooking = document.getElementById("cookingVenue").value;
-
       let total = prices.venueBase + (toiletCount * prices.toilet);
       if (cooking === "yes") total += prices.cooking;
-
-      const box = document.getElementById("venueCost");
-      box.style.display = "block";
-      box.innerHTML = `Estimated Cost: <b>ZMW ${total}</b> (Final cost depends on venue size)`;
+      document.getElementById("venueCost").style.display = "block";
+      document.getElementById("venueCost").innerHTML = `Estimated Cost: <b>ZMW ${total}</b> (Final cost depends on venue size)`;
       return total;
     }
 
-    function submitRoomBooking(event){
+    function submitRoomBooking(event) {
       event.preventDefault();
       const date = document.getElementById("dateRoom").value;
       const time = document.getElementById("timeRoom").value;
-
-      if(!isBookingValid(date, time)){
-        alert("Booking cannot be made less than 10 hours before the selected date and time.");
-        return;
-      }
-
-      const name = document.getElementById("nameRoom").value;
-      const phone = document.getElementById("phoneRoom").value;
-      const location = document.getElementById("locationRoom").value;
-      const rooms = document.getElementById("rooms").value;
-      const kitchens = document.getElementById("kitchens").value;
-      const toilets = document.getElementById("toilets").value;
-      const bathrooms = document.getElementById("bathrooms").value;
-      const total = calcRoomCost();
-
-      const message = 
-        `*Room/Office Booking*\n` +
-        `Name: ${name}\n` +
-        `Date: ${date}\n` +
-        `Time: ${time}\n` +
-        `Phone: ${phone}\n` +
-        `Location: ${location}\n` +
-        `Rooms: ${rooms}\n' +
-        'Kitchens: ${kitchens}\n' +
-        'Toilets: ${toilets}\n' +
-        'Bathrooms: ${bathrooms}\n` +
-        `Total Cost: ZMW ${total}`;
-
+      if (!isBookingValid(date, time)) { alert("Booking must be at least 10 hours in advance."); return; }
+      const message = `*Room/Office Booking*\nName: ${document.getElementById("nameRoom").value}\nDate: ${date}\nTime: ${time}\nPhone: ${document.getElementById("phoneRoom").value}\nLocation: ${document.getElementById("locationRoom").value}\nRooms: ${document.getElementById("rooms").value}\nKitchens: ${document.getElementById("kitchens").value}\nToilets: ${document.getElementById("toilets").value}\nBathrooms: ${document.getElementById("bathrooms").value}\nTotal Cost: ZMW ${calcRoomCost()}`;
       window.open(`https://wa.me/260776482371?text=${encodeURIComponent(message)}`, "_blank");
       setTimeout(() => window.location.href = "index.html", 2000);
     }
 
-    function submitVenueBooking(event){
+    function submitVenueBooking(event) {
       event.preventDefault();
       const date = document.getElementById("dateVenue").value;
       const time = document.getElementById("timeVenue").value;
-
-      if(!isBookingValid(date, time)){
-        alert("Booking cannot be made less than 10 hours before the selected date and time.");
-        return;
-      }
-
-      const name = document.getElementById("nameVenue").value;
-      const phone = document.getElementById("phoneVenue").value;
-      const location = document.getElementById("locationVenue").value;
+      if (!isBookingValid(date, time)) { alert("Booking must be at least 10 hours in advance."); return; }
       const toilets = document.getElementById("toiletsVenue").value;
       const toiletCount = (toilets === "yes") ? document.getElementById("toiletCount").value : "0";
-      const cooking = document.getElementById("cookingVenue").value;
-      const total = calcVenueCost();
-
-      const message = 
-        `*Venue Booking*\n` +
-        `Name: ${name}\n` +
-        `Date: ${date}\n` +
-        `Time: ${time}\n` +
-        `Phone: ${phone}\n` +
-        `Location: ${location}\n` +
-        `Toilets: ${toilets} ${toiletCount !== "0" ? "(" + toiletCount + ")" : ""}\n` +
-        `Cooking Area: ${cooking}\n` +
-        `Estimated Cost: ZMW ${total}`;
-
+      const message = `*Venue Booking*\nName: ${document.getElementById("nameVenue").value}\nDate: ${date}\nTime: ${time}\nPhone: ${document.getElementById("phoneVenue").value}\nLocation: ${document.getElementById("locationVenue").value}\nToilets: ${toilets} ${toiletCount !== "0" ? "(" + toiletCount + ")" : ""}\nCooking Area: ${document.getElementById("cookingVenue").value}\nEstimated Cost: ZMW ${calcVenueCost()}`;
       window.open(`https://wa.me/260776482371?text=${encodeURIComponent(message)}`, "_blank");
       setTimeout(() => window.location.href = "index.html", 2000);
     }
   </script>
 </body>
 </html>
-
-
-
-
-
-
