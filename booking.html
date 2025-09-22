@@ -163,8 +163,8 @@
         <label for="dateRoom">Select Day:</label>
         <input type="date" id="dateRoom" required>
 
-        <label for="phoneVenue">Name:</label>
-        <input type="name" id="customerName" required>
+        <label for="nameRoom">Name:</label>
+        <input type="text" id="customerName" required>
 
         <label for="phoneRoom">Phone Number:</label>
         <input type="tel" id="phoneRoom" required>
@@ -247,8 +247,8 @@
         <label for="dateRoom">Select Day:</label>
         <input type="date" id="dateVenue" required>
 
-        <label for="phoneVenue">Name:</label>
-        <input type="name" id="customerName" required>
+        <label for="nameVenue">Name:</label>
+        <input type="text" id="customerName" required>
 
         <label for="phoneVenue">Phone Number:</label>
         <input type="tel" id="phoneVenue" required>
@@ -319,7 +319,7 @@
 
     const box = document.getElementById("roomCost");
     box.style.display = "block";
-    box.innerHTML = `Estimated Cost: <b>ZMW ${total}</b>`;
+    box.innerHTML = `Total Cost: <b>ZMW ${total}</b>`;
     return total;
   }
 
@@ -391,5 +391,6 @@
 </script>
 </body>
 </html>
+
 
 
