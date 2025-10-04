@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Cleanup Services</title>
+  <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #06363D;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      background: #06363D;
     }
+
     header {
       padding: 1px;
       text-align: center;
@@ -19,7 +25,8 @@
       font-size: 1.6em;
       color: #E0EDE9;
     }
-    .home-image{
+
+    .home-image {
       background-size: cover;
     }
     .team {
@@ -34,45 +41,24 @@
       font-size: 2.5em;
       margin-bottom: 15px;
       text-shadow: 8px 8px 8px rgb(0, 0, 0);
-      color: #E0EDE9;
     }
-
     .team p {
       font-size: 1.2em;
       text-shadow: 5px 5px 8px rgb(0, 0, 0);
-      color: #E0EDE9;
-      
     }
-
-    .slots {
-      margin-top: 20px;
-      font-size: 0.5em;
-      background: #085558;
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 8px;
-    } 
 
     .container {
       text-align: center;
       padding: 50px 20px 20px;
       background: url("team.jpg") no-repeat center center;
       background-size: cover;
+      flex: 1; /* <-- pushes footer to bottom */
     }
-    h1 {
-      font-size: 2.5em;
-      color: #333;
-    }
+
     h2 {
       text-align: center;
-    }
-    p {
-      font-size: 1.2em;
-      color: #929292;
-      margin-bottom: 30px;
-    }
-    .rules p {
-      color: #61540c;
+      color: #06363D;
+      margin-bottom: 20px;
     }
     .notice {
       color: black;
@@ -91,36 +77,29 @@
     a:hover {
       background: #84BABF;
     }
-    .pricing {
+
+    .pricing, .rules {
       max-width: 700px;
-      margin: 50px auto;
-      background: #0D6F73;
+      margin: 30px auto;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    h2 {
-      color: #06363D;
-      margin-bottom: 20px;
+
+    .pricing {
+      background: #0D6F73;
+    }
+    .pricing p {
+      color: #E0EDE9;
+      font-size: 16px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
     }
-    .rules {
-      max-width: 700px;
-      margin: 50px auto;
-      background: #84BABF;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .rules p {
-      color: #0D6F73;
-    }
     th, td {
-      padding: 12px;
-      border: 1px solid #ddd;
+      padding: 10px;
+      border: 3px solid #ddd;
       text-align: center;
     }
     th {
@@ -130,83 +109,57 @@
     td {
       color: #E0EDE9;
     }
-    .btn {
-      text-align: center;
-      padding: 50px 20px 20px;
+
+    .rules {
+      background: #84BABF;
     }
+    .rules p {
+      color: #0D6F73;
+    }
+
     footer {
-      margin-top: 50px;
-      padding: 15px;
+      padding: 25px;
       text-align: center;
-      color: #84BABF;
+      color: #84BABF; 
     }
 
-/* Global adjustments for small screens */
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-
-  h1, h2, h3 {
-    font-size: 18px; /* scale down headings */
-  }
-
-  p, li, label {
-    font-size: 14px; /* scale down text */
-  }
-
-  .container, .card, .slot {
-    padding: 10px;
-  }
-
-  input, select, textarea, button {
-    font-size: 14px;
-    padding: 6px;
-  }
-
-  .btn {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  .cost, .confirmation, .error {
-    font-size: 13px;
-    padding: 6px;
-  }
-
-  .back-home, a {
-    font-size: 14px;
-  }
-
-  .rules p {
-    font-size: 19px;
-  }
+.footer-contacts,
+.socials {
+  background: none;
 }
 
-/* Extra small screens (phones) */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 16px;
-  }
-
-  h2, h3 {
-    font-size: 14px;
-  }
-
-  input, select, button {
-    font-size: 12px;
-    padding: 5px;
-  }
-
-  .cost, .confirmation, .error {
-    font-size: 12px;
-    padding: 4px;
-  }
-
-  .rules p {
-    font-size: 15px;
-  }
+.footer-contacts a,
+.socials a {
+  text-decoration: none;
+  background: none;
+  color: #E0EDE9;
+  font-size: 15px;
 }
+
+.socials a {
+  margin-bottom: 10px;
+}
+
+.socials a:hover {
+  color: #0D6F73;
+}
+
+footer h2 {
+  color: #84BABF;
+}
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      h1, h2, h3 { font-size: 18px; }
+      p, li, label { font-size: 14px; }
+      .rules p { font-size: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 16px; }
+      h2, h3 { font-size: 14px; }
+      .rules p { font-size: 14px; }
+    }
   </style>
 </head>
 <body>
@@ -215,75 +168,86 @@
   </header>
 
   <div class="container">
-  <div class="team">
-    <h1>Welcome to Clean Slate Services</h1>
-    <p>We provide professional home, office and venue cleaning services across Lusaka.<br>
-      Choose your time slot and let our cleanup team handle the rest.</p>
-      <!-- Available Time Slots -->
-    <div class="slots">
-      <h3>Available Time Slots</h3>
-      <p>05:00 &nbsp;&nbsp; | &nbsp;&nbsp; 11:00 &nbsp;&nbsp; | &nbsp;&nbsp; 16:00</p>
+    <div class="team">
+      <h1>Welcome to C&A CleanupCO</h1>
+      <p>We provide professional home, office and venue cleaning services across Lusaka.</p>
     </div>
-  </div>
-  <div>
     <p class="notice">PLEASE READ THE TERMS & CONDITIONS BELOW BEFORE BOOKING!</p>
   </div>
-</div>
 
-
-  <!-- Price List Section -->
   <div class="pricing">
-    <h2>Our Price List</h2>
+    <h2>Pricing</h2>
+    <p>To estimate the total cost of cleaning a space, factors such as:<br>
+      i. space size,<br>
+      ii. type of cleaning service,<br>
+      iii. time it'll take to complete the cleaning;<br>
+      are considered.</p>
+  </div>
+
+  <div class="pricing">
+    <h2>General Cleaning</h2>
     <table>
-      <tr>
-        <th>Service</th>
-        <th>Price (ZMW)</th>
-      </tr>
-      <tr>
-        <td>Room Cleaning (per room)</td>
-        <td>300</td>
-      </tr>
-      <tr>
-        <td>Kitchen Cleaning (per kitchen)</td>
-        <td>400</td>
-      </tr>
-      <tr>
-        <td>Toilet Cleaning (per toilet)</td>
-        <td>500</td>
-      </tr>
-      <tr>
-        <td>Bathroom Cleaning (per bathroom)</td>
-        <td>500</td>
-      </tr>
-      <tr>
-        <td>Celebration Venus</td>
-        <td>Depends on space size(least amount 800)</td>
-      </tr>
+      <tr><th>Service</th><th>Price(ZMW)</th></tr>
+      <tr><td>Per Room</td><td>250+</td></tr>
+      <tr><td>Per Kitchen</td><td>300+</td></tr>
+      <tr><td>Per Toilet</td><td>400+</td></tr>
+      <tr><td>Per Bathroom</td><td>400+</td></tr>
+      <tr><td>Toilet/Bathroom combo</td><td>700+</td></tr>
+    </table>
+  </div>
+
+  <div class="pricing">
+    <h2>General Deep Cleaning</h2>
+    <table>
+      <tr><th>Service</th><th>Price(ZMW)</th></tr>
+      <tr><td>Per Room</td><td>350+</td></tr>
+      <tr><td>Per Kitchen</td><td>400+</td></tr>
+      <tr><td>Per Toilet</td><td>500+</td></tr>
+      <tr><td>Per Bathroom</td><td>500+</td></tr>
+      <tr><td>Toilet/Bathroom combo</td><td>800+</td></tr>
+    </table>
+  </div>
+
+  <div class="pricing">
+    <h2>Move In/Out Deep Cleaning</h2>
+    <table>
+      <tr><th>Service</th><th>Price(ZMW)</th></tr>
+      <tr><td>Per Room</td><td>380+</td></tr>
+      <tr><td>Per Kitchen</td><td>480+</td></tr>
+      <tr><td>Per Toilet</td><td>600+</td></tr>
+      <tr><td>Per Bathroom</td><td>600+</td></tr>
+      <tr><td>Toilet/Bathroom combo</td><td>800+</td></tr>
+    </table>
+  </div>
+
+  <div class="pricing">
+    <h2>Post Construction Cleaning</h2>
+    <table>
+      <tr><th>Service</th><th>Price(ZMW)</th></tr>
+      <tr><td>Per Room</td><td>700+</td></tr>
     </table>
   </div>
 
   <div class="rules">
-  <h2>Terms&Conditions</h2>
-
-  <p><b>1. Booking Deadline</b><br>
-  All bookings must be made at least <b>10 hours</b> in advance.</p>
-
-  <p><b>2. Payment Terms</b><br>
-  A deposit of <b>50%</b> is required upon booking confirmation. 
-  The remaining <b>50%</b> is payable upon the team’s arrival.</p>
-
-  <p><b>3. Cancellation Policy</b><br>
-  - Cancellations made <b>6 hours or more</b> before the scheduled service: <b>No charge</b>.<br>
-  - Cancellations made <b>less than 6 hours</b> before the scheduled service: <b>50% charge</b> of the service fee (deposit is non-refundable).</p>
-</div>
-
-  <div class="btn">
-    <a href="booking.html">Book Now</a>
+    <h2>Terms & Conditions</h2>
+    <p><b>1. Payment Terms</b><br>
+      A payment of <b>50%</b> is required upon booking confirmation. Full payment upon team's arrival.</p>
+    <p><b>2. Cancellation Policy</b><br>
+      - Cancellations made <b>less than an hour</b> before the scheduled service attract a <b>30% charge</b> of the service fee (20% refund).</p>
   </div>
-  <footer>
-    &copy; 2025 CleanSlate Services
-  </footer>
+
+<footer>
+  <div class="footer-contacts">
+    <h2>Contact Us</h2>
+    <p>Phone:<a href="tel:+260776482371">+260 776482371</a></p>
+  </div>
+  <div class="socials">
+    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+      <i class=""></i>
+    </a>
+  </div>
+  &copy; 2025 C&A CleanupCO
+</footer>
+
 </body>
 </html>
-
-
